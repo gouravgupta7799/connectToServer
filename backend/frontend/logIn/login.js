@@ -1,5 +1,4 @@
 
-let url = 'http://localhost:4000/'
 
 let forgetPass = document.getElementById('forgetPass');
 let forgetemailform = document.getElementById('forgetemailform');
@@ -16,7 +15,7 @@ document.getElementById('loginBtn').addEventListener('click', (e) => {
   let config = {
     method: 'post',
     maxBodyLength: Infinity,
-    url: url + 'user/login',
+    url: '/user/login',
     headers: {
       'Content-Type': 'application/json',
       'Authorization': token,
@@ -56,7 +55,7 @@ document.getElementById('forgetBtn').addEventListener('click', (e) => {
   let obj = {
     email: document.getElementById('forgetemailInput').value,
   }
-  axios.post(url + 'password/forgotpassword', obj, { headers: { 'Authorization': token } })
+  axios.post('password/forgotpassword', obj, { headers: { 'Authorization': token } })
     .then(response => {
       alert('mail send to registered Email');
     })

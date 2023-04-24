@@ -1,5 +1,4 @@
 
-let url = 'http://localhost:4000'
 let idurl = document.URL;
 
 
@@ -11,7 +10,7 @@ document.getElementById('resetPassword').addEventListener('click', (e) => {
     passwordInput: document.getElementById('passwordInput').value,
     id: idurl.split('=')[1]
   }
-  axios.post('http://localhost:4000/password/resetPassword', newobj, { headers: { 'Content-Type': 'application/json' } })
+  axios.post('/password/resetPassword', newobj, { headers: { 'Content-Type': 'application/json' } })
     .then(res => {
       document.location.href = `../logIn/login.html`
     })

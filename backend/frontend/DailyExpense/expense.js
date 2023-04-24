@@ -1,7 +1,5 @@
 
 
-let url = 'http://localhost:4000'
-
 let token = localStorage.getItem('token');
 let ls = localStorage.getItem('primeUser')
 let table = document.getElementById('tableItems');
@@ -12,7 +10,7 @@ let rowNumber = localStorage.getItem('rowNumberofItems');
 
 isPrime()
 function isPrime() {
-  axios.get(url + '/expense', { headers: { 'Authorization': token, } })
+  axios.get('/expense', { headers: { 'Authorization': token, } })
     .then(res => {
       if (res.data.prime === true) {
         premium.style.display = 'none';
@@ -41,7 +39,7 @@ document.getElementById('exepenseBtn').addEventListener('click', (e) => {
   let config = {
     method: 'post',
     maxBodyLength: Infinity,
-    url: url + '/expense',
+    url: '/expense',
     headers: {
       'Content-Type': 'application/json',
       'Authorization': token
@@ -72,7 +70,7 @@ function showData(index) {
   let config = {
     method: 'get',
     maxBodyLength: Infinity,
-    url: url + '/expense',
+    url: '/expense',
     headers: {
       'Content-Type': 'application/json',
       'Authorization': token,
@@ -122,7 +120,7 @@ document.getElementById('tableItems').addEventListener('click', (e) => {
     let config = {
       method: 'delete',
       maxBodyLength: Infinity,
-      url: url + '/expense',
+      url: '/expense',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': token,
@@ -152,7 +150,7 @@ document.getElementById('tableItems').addEventListener('click', (e) => {
     let config = {
       method: 'get',
       maxBodyLength: Infinity,
-      url: url + '/expense/editexp',
+      url: '/expense/editexp',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': token,
@@ -185,7 +183,7 @@ document.getElementById('updateBtn').addEventListener('click', (e) => {
   let config = {
     method: 'put',
     maxBodyLength: Infinity,
-    url: url + '/expense',
+    url: '/expense',
     headers: {
       'Content-Type': 'application/json',
       'Authorization': token,
@@ -205,7 +203,7 @@ document.getElementById('premium').addEventListener('click', (e) => {
   let config = {
     method: 'post',
     maxBodyLength: Infinity,
-    url: url + '/primemember/purches',
+    url: '/primemember/purches',
     headers: {
       'Content-Type': 'application/json',
       'Authorization': token,
@@ -220,7 +218,7 @@ document.getElementById('premium').addEventListener('click', (e) => {
         "order_id": response.data.ord.orderId,
         "handler": async function (response) {
 
-          axios.post(url + '/primemember/updatetransaction', {
+          axios.post( '/primemember/updatetransaction', {
             order_id: option.order_id, payment_id: response.razorpay_payment_id, status: 'SUCCESSFUL'
           }, { headers: { 'Authorization': token } })
             .then((res) => {
@@ -239,7 +237,7 @@ document.getElementById('premium').addEventListener('click', (e) => {
       // e.preventDefault();
 
       rezl.on('payment.failed', async function (response) {
-        axios.post(url + '/primemember/updatetransaction', {
+        axios.post('/primemember/updatetransaction', {
           order_id: option.order_id, payment_id: response.razorpay_payment_id, status: 'FAILED'
         }, { headers: { 'Authorization': token, } })
           .then(alert('paymant fail'))
@@ -254,7 +252,7 @@ primeUser.style.display = 'none'
 
 document.getElementById('leadboard').addEventListener('click', () => {
   board.style.display = "block";
-  axios.get(url + '/prime/primeUser', { headers: { 'Authorization': token, } })
+  axios.get('/prime/primeUser', { headers: { 'Authorization': token, } })
     .then(res => {
       res.data.leaderboardArray.forEach(data => {
         let li = document.createElement('li');
@@ -268,7 +266,7 @@ let downloadList = document.getElementById('downloadList')
 downloadList.style.display = 'none'
 
 document.getElementById('downloadhistory').addEventListener('click', () => {
-  axios.get(url + '/prime/downloaditems', { headers: { 'Authorization': token, } })
+  axios.get('/prime/downloaditems', { headers: { 'Authorization': token, } })
     .then(res => {
 
       res.data.response.forEach(el => {

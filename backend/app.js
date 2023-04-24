@@ -3,6 +3,8 @@ const bodyperser = require('body-parser');
 const cors = require('cors');
 const compression = require('compression');
 const path = require('path');
+const dotenv = require('dotenv');
+dotenv.config()
 
 const sequelize = require('./utils/DataBase.js');
 let router = require('./routers/router.js');
@@ -22,7 +24,6 @@ const app = express();
 app.use(cors());
 app.use(bodyperser.json({ extended: false }));
 app.use(compression());
-
 
 app.use('/user', router);
 app.use('/expense', expence);

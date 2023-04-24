@@ -9,7 +9,7 @@ let yearlyexpence = document.getElementById('yearlyexpence')
 showData()
 document.getElementById('downloadFile').addEventListener('click', async () => {
 
-  axios.get('http://localhost:4000/prime/download', { headers: { 'Content-Type': 'application/json', 'Authorization': token, } })
+  axios.get('/prime/download', { headers: { 'Content-Type': 'application/json', 'Authorization': token, } })
     .then(Response => {
       if (Response.status === 200) {
         let a = document.createElement('a');
@@ -27,7 +27,7 @@ function showData() {
   let config = {
     method: 'get',
     maxBodyLength: Infinity,
-    url: 'http://localhost:4000/prime/allExe',
+    url: '/prime/allExe',
     headers: {
       'Content-Type': 'application/json',
       'Authorization': token,

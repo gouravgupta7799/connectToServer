@@ -1,5 +1,5 @@
 
-let url = 'http://localhost:4000/user'
+let url = '/user'
 let token = localStorage.getItem('token');
 
 document.getElementById('submitBtn').addEventListener('click', (e) => {
