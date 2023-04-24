@@ -13,7 +13,7 @@ document.getElementById('resetPassword').addEventListener('click', (e) => {
   }
   axios.post('http://localhost:4000/password/resetPassword', newobj, { headers: { 'Content-Type': 'application/json' } })
     .then(res => {
-      window.location.href = `http://127.0.0.1:5500/logIn/login.html`
+      document.location.href = `../logIn/login.html`
     })
 
 })

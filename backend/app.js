@@ -2,7 +2,6 @@ const express = require('express');
 const bodyperser = require('body-parser');
 const cors = require('cors');
 const compression = require('compression');
-const fs = require('fs');
 const path = require('path');
 
 const sequelize = require('./utils/DataBase.js');
@@ -30,6 +29,11 @@ app.use('/expense', expence);
 app.use('/primemember', prime);
 app.use('/prime', primeUser);
 app.use('/password', forgetPassword);
+
+app.use('/frontend', express.static('frontend'))
+app.get("/", (req, res) => {
+  res.redirect("/frontend/logIn/login.html");
+})
 
 User.hasMany(Expense);
 Expense.belongsTo(User);

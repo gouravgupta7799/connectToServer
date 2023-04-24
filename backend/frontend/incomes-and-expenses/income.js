@@ -20,7 +20,7 @@ document.getElementById('downloadFile').addEventListener('click', async () => {
     })
 })
 document.getElementById('backToHome').addEventListener('click', () => {
-  window.location.href = 'http://127.0.0.1:5500/DailyExpense/expense.html?'
+  window.location.href = '../DailyExpense/expense.html?'
 })
 
 function showData() {

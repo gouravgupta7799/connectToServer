@@ -24,6 +24,7 @@ body {
   background-color: blue;
   padding: 7px 12px;
   border-radius: 9px;
+  cursor: pointer;
 }
 
 .rows {

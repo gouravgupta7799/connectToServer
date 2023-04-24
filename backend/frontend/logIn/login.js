@@ -6,7 +6,7 @@ let forgetemailform = document.getElementById('forgetemailform');
 let token = localStorage.getItem('token');
 
 document.getElementById('loginBtn').addEventListener('click', (e) => {
-  // e.preventDefault()
+  e.preventDefault()
 
   obj = JSON.stringify({
     email: document.getElementById('emailInput').value,
@@ -27,9 +27,8 @@ document.getElementById('loginBtn').addEventListener('click', (e) => {
   axios.request(config)
     .then((response) => {
       if (response.status === 200) {
-
         localStorage.setItem('token', response.data.token);
-        window.location.href = 'http://127.0.0.1:5500/DailyExpense/expense.html?'
+        document.location.href = '../DailyExpense/expense.html?'
       }
     })
     .catch((error) => {

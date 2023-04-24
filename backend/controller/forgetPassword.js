@@ -35,7 +35,7 @@ exports.forgetPassword = (req, res, next) => {
         sender,
         to: receivers,
         subject: 'new mail sended',
-        htmlcontent: `<p>To reset your password<a href="http://localhost:4000/password/resetPasswordlink/${uniqueId}" >click here</a></p>`
+        htmlcontent: `<p>To reset your password<a href= "${window.location.protocol}//${window.location.host}/password/resetPasswordlink/${uniqueId}" >click here</a></p>`
       })
       .then(d => {
         res.send(d)
@@ -65,7 +65,7 @@ exports.getresetPassword = async (req, res, next) => {
   }
   else if (ForgetPass.isValid === true) {
     res.status(200).send(`
-    <button><a href="http://127.0.0.1:5500/recoverPassWord/recover.html?id=${userId}">click here for reset your password</a></button>
+    <button><a href="${window.location.protocol}//${window.location.host}/recoverPassWord/recover.html?id=${userId}">click here for reset your password</a></button>
     `)
   }
 }
