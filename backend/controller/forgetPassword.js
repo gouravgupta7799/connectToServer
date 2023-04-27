@@ -3,6 +3,7 @@ const User = require('../model/model');
 const ForgotPasswordRequest = require('../model/forgetPassword');
 const bcrypt = require('bcrypt');
 const uuid = require('uuid');
+const os = require('os');
 
 exports.forgetPassword = (req, res, next) => {
 
@@ -35,7 +36,7 @@ exports.forgetPassword = (req, res, next) => {
         sender,
         to: receivers,
         subject: 'new mail sended',
-        htmlcontent: `<p>To reset your password<a href= "${window.location.protocol}//${window.location.host}/password/resetPasswordlink/${uniqueId}" >click here</a></p>`
+        htmlcontent: `<p>To reset your password<a href= "${req.protocol}://${req.get('host')}/password/resetPasswordlink/${uniqueId}" >click here</a></p>`
       })
       .then(d => {
         res.send(d)
@@ -65,7 +66,7 @@ exports.getresetPassword = async (req, res, next) => {
   }
   else if (ForgetPass.isValid === true) {
     res.status(200).send(`
-    <button><a href="${window.location.protocol}//${window.location.host}/recoverPassWord/recover.html?id=${userId}">click here for reset your password</a></button>
+    <button><a href="${req.protocol}://${req.get('host')}/frontend/recoverPassWord/recover.html?id=${userId}">click here for reset your password</a></button>
     `)
   }
 }

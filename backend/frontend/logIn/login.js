@@ -55,7 +55,7 @@ document.getElementById('forgetBtn').addEventListener('click', (e) => {
   let obj = {
     email: document.getElementById('forgetemailInput').value,
   }
-  axios.post('password/forgotpassword', obj, { headers: { 'Authorization': token } })
+  axios.post('/password/forgotpassword', obj, { headers: { 'Authorization': token } })
     .then(response => {
       alert('mail send to registered Email');
     })
