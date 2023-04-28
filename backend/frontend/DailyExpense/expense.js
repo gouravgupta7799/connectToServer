@@ -108,9 +108,6 @@ function showData(index) {
     });
 }
 
-
-
-
 document.getElementById('tableItems').addEventListener('click', (e) => {
   // e.preventDefault();
   if (e.target.classList.contains('delete')) {
