@@ -45,6 +45,13 @@ function showData() {
         <td class="rows">${el.Price}</td>`
         totalIncome += el.Price
         itemList.append(tr)
+
+
+        let notesforexe = document.getElementById('notesforexe');
+        let trt = document.createElement('tr');
+        trt.innerHTML = `<td class="rows">${d.getDate()}/${d.getMonth()}/ ${d.getFullYear()}</td>
+        <td class="rows">${el.Description}</td>`
+        notesforexe.append(trt)
       });
 
       let tr = document.createElement('tr');

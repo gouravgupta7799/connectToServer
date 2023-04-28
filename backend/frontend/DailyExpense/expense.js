@@ -7,7 +7,8 @@ let form = document.getElementById('submitForm');
 let editForm = document.getElementById('editForm');
 let board = document.getElementById('board');
 let rowNumber = localStorage.getItem('rowNumberofItems');
-
+let active = -1;
+showData(0)
 isPrime()
 function isPrime() {
   axios.get('/expense', { headers: { 'Authorization': token, } })
@@ -19,7 +20,6 @@ function isPrime() {
         primeUser.append(h1)
         primeUser.style.display = 'block'
       }
-
     })
 }
 
@@ -85,6 +85,7 @@ function showData(index) {
       if (res.status === 200) {
         table.innerHTML = ''
         let resp = res.data.data;
+        
         resp.forEach(response => {
 
           let tr = document.createElement('tr');
@@ -95,8 +96,11 @@ function showData(index) {
           <td><button class="Btn1 delete" id="${response.id}">delete</button><button class="Btn2 edit" id="${response.id}">edit</button></td>`
           table.appendChild(tr);
         })
-        let newInx = index + 1
-        document.getElementById('buttonsfor').innerHTML += `<button onclick="showData(${newInx})">${newInx + 1}</button>`
+        if (active < index && res.data.total > (index + 1) * parseInt(rowNumber)) {
+          let newInx = index + 1
+          document.getElementById('buttonsfor').innerHTML += `<button onclick="showData(${newInx})">${newInx + 1}</button>`
+        }
+        active = index;
       }
       else {
         console.log(res.data.msg)
@@ -215,7 +219,7 @@ document.getElementById('premium').addEventListener('click', (e) => {
         "order_id": response.data.ord.orderId,
         "handler": async function (response) {
 
-          axios.post( '/primemember/updatetransaction', {
+          axios.post('/primemember/updatetransaction', {
             order_id: option.order_id, payment_id: response.razorpay_payment_id, status: 'SUCCESSFUL'
           }, { headers: { 'Authorization': token } })
             .then((res) => {

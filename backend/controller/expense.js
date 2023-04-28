@@ -48,15 +48,15 @@ exports.allExpense = async (req, res, next) => {
     let index = req.header('index')
     rowNumber = toInteger(rowNumber)
     let skip = rowNumber
-    let total = await Expense.findAll({ where: { userId: Id } })
-    if (total.length >= index * skip) {
+    let total = await Expense.count({ where: { userId: Id } });
+    if (total >= index * skip) {
       Expense.findAll({
         where: { userId: Id },
         offset: index * skip,
         limit: rowNumber
       })
         .then(result => {
-          res.status(200).json({ data: result, prime: req.user.isPrime })
+          res.status(200).json({ data: result, prime: req.user.isPrime, total })
         })
         .catch(err => {
           console.log(err)
